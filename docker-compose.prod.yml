@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  mynet:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - mynet
+    volumes:
+      - ".:/app"
+    ports:
+      - "80:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - PORT=80
+
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "5433:5433"
+    container_name: amavideosdb-prod
+    hostname: amavideosdb-prod
+    volumes:
+      - postgres-data-prod:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: amavideosdb
+    networks:
+      - mynet
+
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    container_name: redis-prod
+    networks:
+      - mynet
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DB_VENDOR: h2
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    entrypoint: ["/opt/keycloak/bin/kc.sh", "start"]
+    networks:
+      - mynet
+
+volumes:
+  postgres-data-prod:

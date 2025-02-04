@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  mynet:
+    driver: bridge
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - mynet
+    volumes:
+      - ".:/app"
+    ports:
+      - "4000:4000"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - PORT=4000
+
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    ports:
+      - "5433:5433"
+    container_name: amavideosdb-dev
+    hostname: amavideosdb-dev
+    volumes:
+      - postgres-data-dev:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: amavideosdb
+    networks:
+      - mynet
+
+  redis:
+    image: redis:latest
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    container_name: redis-dev
+    networks:
+      - mynet
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    ports:
+      - "8080:8080"
+    environment:
+      DB_VENDOR: h2
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    command: ["start-dev"]  # Adicione esta linha para garantir que o Keycloak continue rodando
+    networks:
+      - mynet
+
+volumes:
+  postgres-data-dev:
