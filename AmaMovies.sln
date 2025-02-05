@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{3990AD52-3268-47E4-B4EB-471E4C8141AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "account", "account", "{102F6C11-1216-4545-8FEE-41BCE04856EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2C0A2797-BDFC-4AD5-85E2-DFF7D97F9E16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AmaMovies.Account.WebAPI", "backend\account\src\webapi\AmaMovies.Account.WebAPI.csproj", "{27149C62-DC52-492B-98E2-8A39B64535D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{27149C62-DC52-492B-98E2-8A39B64535D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27149C62-DC52-492B-98E2-8A39B64535D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27149C62-DC52-492B-98E2-8A39B64535D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27149C62-DC52-492B-98E2-8A39B64535D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{102F6C11-1216-4545-8FEE-41BCE04856EA} = {3990AD52-3268-47E4-B4EB-471E4C8141AE}
+		{2C0A2797-BDFC-4AD5-85E2-DFF7D97F9E16} = {102F6C11-1216-4545-8FEE-41BCE04856EA}
+		{27149C62-DC52-492B-98E2-8A39B64535D1} = {2C0A2797-BDFC-4AD5-85E2-DFF7D97F9E16}
+	EndGlobalSection
+EndGlobal
