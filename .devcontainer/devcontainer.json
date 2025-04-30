@@ -44,7 +44,7 @@
                 "ms-dotnettools.csdevkit",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python"
-            ]
+             ]
         }
     },
     "postCreateCommand": "",

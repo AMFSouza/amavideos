@@ -1,9 +1,16 @@
+using System.Threading.Tasks;
+using FluentAssertions;         
+using Xunit;
+using AmaMovies.Account.Application.UseCases;
+using AmaMovies.Account.Domain.Entities;
+using AmaMovies.Account.Application.Repositories;
 namespace Account.Integ.Test;
 
 public class AccountTest
 {
-    private readonly Connection connection;
-    private readonly Signup signup;
+    private readonly IConnection connection;
+    private readonly ISignupStrategy adminSignup = new AdminSignupStrategy();
+    private readonly ISignupStrategy customerSignup = new CustomerSignupStrategy();
     private readonly AccountRepository accountRepository;
     private readonly GetAccount getAccount;
 
@@ -16,9 +23,9 @@ public class AccountTest
 
     }
 
-    [Fact(DisplayName=nameof(should_signup_new_user))]
+    [Fact(DisplayName=nameof(should_signup_new_adminuser))]
     [Trait("Integration-Application", "Signup - Use Case")]
-    public async Task should_signup_new_user()
+    public async Task should_signup_new_adminuser()
     {
         var input = new {
             Email = "user@gmail.com",
