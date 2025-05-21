@@ -25,13 +25,13 @@
     },
     
     // Use 'forwardPorts' para fazer uma lista de portas dentro do container disponíveis localmente.
-    // "forwardPorts": [],
+    "forwardPorts": [5000, 5001],
 
     // Descomente a próxima linha se quiser iniciar serviços específicos em sua configuração Docker Compose.
     // "runServices": [],
 
     // Descomente a próxima linha se quiser manter seus containers rodando após o VS Code ser fechado.
-    // "shutdownAction": "none",
+    "shutdownAction": "stopCompose",
 
     // Descomente a próxima linha para executar comandos após a criação do container.
     // "postCreateCommand": "cat /etc/os-release",
@@ -44,7 +44,7 @@
                 "ms-dotnettools.csdevkit",
                 "ms-azuretools.vscode-docker",
                 "ms-python.python"
-            ]
+             ]
         }
     },
     "postCreateCommand": "",
