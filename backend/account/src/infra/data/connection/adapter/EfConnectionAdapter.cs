@@ -1,7 +1,5 @@
-using System.Threading.Tasks;
-using AmaMovies.Account.Infra.Database;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace AmaMovies.Account.Infra.Data.Adapter;
 public class EfConnectionAdapter : IConnection
@@ -20,9 +18,7 @@ public class EfConnectionAdapter : IConnection
         {
             throw new ArgumentException("Query cannot be null or empty.");
         }
-
-        //return await _dbContext.Set<T>().FromSqlInterpolated($"{query}").ToListAsync();
-        //return await _dbContext.Set<T>().FromSqlInterpolated(query).ToListAsync();
+        return await _dbContext.Set<T>().FromSqlRaw(query).ToListAsync();
     }
 
     // Método ExecuteAsync para persistência

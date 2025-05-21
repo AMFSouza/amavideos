@@ -10,15 +10,15 @@ using AmaMovies.Account.Domain.Enum;
 namespace AmaMovies.Account.Domain.Entities;
 public class UserAccount : IAggregateRoot
 {
-    private readonly string Id;
-    private readonly Name Name;
-    private readonly Email Email;
+    public string Id { get;  private set; }
+    public  Name Name { get; private set; }
+    public Email Email { get; private set; }
     public AccountType AccountType { get; private set; }
-    public Status Status;
-    public readonly string? VerificationCode;
-    private readonly DateTime CreatedAt;
-    private readonly DateTime UpdatedAt;
-    private readonly IPassword Password;
+    public Status Status { get; private set; }
+    public  string? VerificationCode { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
+    public IPassword Password { get; private set; }
     
 
     private UserAccount(string id, string firstName, string lastName, string email, string password,
