@@ -1,4 +1,5 @@
-namespace AmaMovies.Account.Domain.Entity.Password;
+namespace AmaMovies.Account.Domain.Entities;
+
 public interface IPassword
 {
     string Value { get; }
