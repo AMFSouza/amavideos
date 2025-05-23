@@ -1,6 +1,5 @@
 namespace AmaMovies.Account.Application.UseCases;
-public interface ISignupStrategy<TInput, TOutput> : IUseCase<TInput, TOutput>
-    where TOutput : class // Você pode ajustar essa restrição conforme necessário.
+public interface ISignupStrategy
 {
-    Task<TOutput> ExecuteAsync(TInput input);
+    Task<object> ExecuteSignupAsync(object input);
 }

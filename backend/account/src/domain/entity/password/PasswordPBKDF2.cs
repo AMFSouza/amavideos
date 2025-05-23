@@ -1,9 +1,6 @@
-using System;
 using System.Security.Cryptography;
-using System.Text;
-using AmaMovies.Account.Domain.Entity.Password;
 
-namespace AmaMovies.Account.Domain.Entities.Password
+namespace AmaMovies.Account.Domain.Entities
 {
     public class PasswordPBKDF2 : IPassword
     {

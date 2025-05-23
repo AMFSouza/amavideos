@@ -3,7 +3,7 @@ using AmaMovies.Account.Infra.Gateways;
 using AmaMovies.Account.Domain.Entities;
 
 namespace AmaMovies.Account.Application.UseCases;
-public class SignupAdmin : ISignupStrategy<SignupAdminInput, SignupAdminOutput>
+public class SignupAdmin : IUseCase
 {
     private readonly IAccountRepository _accountRepository;
     private readonly MailerGateway mailerGateway;
@@ -14,18 +14,18 @@ public class SignupAdmin : ISignupStrategy<SignupAdminInput, SignupAdminOutput>
         mailerGateway = new MailerGateway();
     }
 
-    public async Task<SignupAdminOutput> ExecuteAsync(SignupAdminInput input)
+    public async Task<object> ExecuteAsync(object input)
     {
-        var existingAccount = await _accountRepository.GetByEmail(input.Email);
+        if (input is not SignupAdminInput signupInout) throw new ArgumentException("Invalid input type");
+        var existingAccount = await _accountRepository.GetByEmail(signupInout.Email) ?? throw new Exception("Conta não existe"); 
         if (existingAccount != null) throw new Exception("Conta já existe");
-        if (input.Password == null) throw new Exception("Senha não pode ser nula");
-        var account = UserAccount.Create(input.Email, input.FirstName, input.LastName, input.Password, input.VerificationCode);
-        await mailerGateway.Send(input.Email, "Confirmação de cadastro", $"Seu código de verificação é: {input.VerificationCode}");
+        if (input == null) throw new Exception("Senha não pode ser nula");
+        var account = UserAccount.Create(signupInout.Email, signupInout.FirstName, signupInout.LastName, signupInout.Password, signupInout.VerificationCode);
+        await mailerGateway.Send(signupInout.Email, "Confirmação de cadastro", $"Seu código de verificação é: {signupInout.VerificationCode}");
         await _accountRepository.Save(account); 
+        return new SignupAdminOutput(account.GetId());        
+    }
 
-        await _accountRepository.Save(account); 
-        return new SignupAdminOutput(account.GetId());
-      }
 }
 
 public record SignupAdminInput(string FirstName, string LastName, string Email, string VerificationCode, string Password);
