@@ -1,13 +1,14 @@
 using System.Data;
 using Dapper;
+using AmaMovies.Account.Infra.Data.Connection;
 
 namespace AmaMovies.Account.Infra.Data.Adapter;
 
-public abstract class BaseConnectionDapperAdapter : IConnection
+public abstract class DapperAdapter : IConnection
 {
     protected readonly IDbConnection _connection;
 
-    protected BaseConnectionDapperAdapter(IDbConnection connection)
+    protected DapperAdapter(IDbConnection connection)
     {
         _connection = connection;
         _connection.Open(); // Mantém conexão aberta

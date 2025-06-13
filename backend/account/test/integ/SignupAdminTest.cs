@@ -1,8 +1,8 @@
 using FluentAssertions;
-using AmaMovies.Account.Infra.Data;
 using AmaMovies.Account.Infra.Database;
 using AmaMovies.Account.Application.UseCases;
-using AmaMovies.Account.Infra.Database.Adapter;
+using AmaMovies.Account.Infra.Data.Connection;
+using AmaMovies.Account.Infra.Data.Adapter;
 
 namespace Account.Integ.Test;
 
@@ -25,7 +25,8 @@ public class SignupAdminTest
     {
         _context = new TestDbContext();
         _context.Database.EnsureCreated(); // Ensure the in-memory database is created
-        connection = new SqLiteConnectionAdapter("Data Source=:memory:");
+        //connection = new SqliteConnectionDapperAdapter(_context).GetDbContext();
+        connection = new SqliteConnectionDapperAdapter("Data Source=:memory:");
         accountRepository = new AccountRepository(connection);
         signupAdmin = new SignupStrategy(new SignupAdmin(accountRepository));
         getAccount = new GetAccount(accountRepository);

@@ -1,6 +1,6 @@
 using AmaMovies.Account.Application.Repositories;
 using AmaMovies.Account.Domain.Entities;
-using AmaMovies.Account.Infra.Data;
+using AmaMovies.Account.Infra.Data.Connection;
 
 namespace AmaMovies.Account.Infra.Database;
 

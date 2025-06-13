@@ -1,7 +1,4 @@
-using AmaMovies.Account.Infra.Data.Adapter;
-using Microsoft.EntityFrameworkCore;
-
-namespace AmaMovies.Account.Infra.Data;
+namespace AmaMovies.Account.Infra.Data.Adapter;
 
 public class PostgreEfDbContextAdapter : IEfDbContextAdapter
 {
@@ -19,10 +16,5 @@ public class PostgreEfDbContextAdapter : IEfDbContextAdapter
             .Options;
 
         return new AccountDbContext(options);
-    }
-
-    DbContext IEfDbContextAdapter.GetDbContext()
-    {
-        throw new NotImplementedException();
     }
 }

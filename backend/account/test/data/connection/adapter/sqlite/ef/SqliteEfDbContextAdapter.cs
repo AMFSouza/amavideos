@@ -1,11 +1,8 @@
-using Microsoft.Data.Sqlite;
-using Microsoft.EntityFrameworkCore;
-
-namespace AmaMovies.Account.Infra.Data.Adapter;
+namespace AmaMovies.Account.Test.Data;
 
 public class SqliteEfDbContextAdapter : IEfDbContextAdapter
 {
-     private readonly string _connectionString;
+    private readonly string _connectionString;
 
     public SqliteEfDbContextAdapter(string connectionString)
     {
@@ -15,12 +12,11 @@ public class SqliteEfDbContextAdapter : IEfDbContextAdapter
     public DbContext GetDbContext()
     {
         var options = new DbContextOptionsBuilder<AccountDbContext>()
-            .UseSqlite(_connectionString)
+            .UseSqlite(_connectionString) // 🔹 Agora está aqui!
             .Options;
 
         var context = new AccountDbContext(options);
-        context.Database.EnsureCreated(); // se estiver usando in-memory
+        context.Database.EnsureCreated();
         return context;
     }
-
 }

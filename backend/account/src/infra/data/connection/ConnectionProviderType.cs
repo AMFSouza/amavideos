@@ -1,4 +1,4 @@
-namespace AmaMovies.Account.Infra.Data;
+namespace AmaMovies.Account.Infra.Data.Connection;
 
 public enum ConnectionProviderType
 {

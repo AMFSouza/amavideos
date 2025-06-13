@@ -1,6 +1,7 @@
-using Amamovies.Account.Infra.Data;
-using AmaMovies.Account.Infra.Database.Adapter;
+
 using Microsoft.Extensions.Configuration;
+using AmaMovies.Account.Infra.Data.Connection;
+using AmaMovies.Account.Infra.Data.Adapter;
 
 namespace AmaMovies.Account.Infra.Data;
 
@@ -13,17 +14,13 @@ public class ConnectionFactory : IConnectionFactory
         _configuration = configuration;
     }
 
-    public IConnection CreateConnection(ConnectionProviderType providerType)
+    public IConnection CreateConnection(ConnectionProviderType providerType) => providerType switch
     {
-        return providerType switch
-        {
-            ConnectionProviderType.PostgreDapper =>
-                new PostgreConnectionAdapter(_configuration.GetConnectionString("PostgreSQL")),
+        ConnectionProviderType.PostgreDapper =>
+            new PostgreConnectionDapperAdapter(_configuration.GetConnectionString("PostgreSQL")),
+        ConnectionProviderType.SqliteDapper =>
+            new SqliteConnectionDapperAdapter(_configuration.GetConnectionString("Sqlite")),
 
-            ConnectionProviderType.SqliteDapper =>
-                new SqLiteConnectionAdapter(_configuration.GetConnectionString("SQLite")),
-
-            _ => throw new NotImplementedException("Provider type não suportado para Dapper.")
-        };
-    }
+        _ => throw new NotImplementedException("Provider type não suportado para Dapper.")
+    };
 }

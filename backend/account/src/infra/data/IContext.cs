@@ -1,8 +1,4 @@
-using System.Collections.Generic;
-using AmaMovies.Account.Domain.Entities;
-using AmaMovies.Account.Infra.Data;
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
+using AmaMovies.Account.Infra.Data.Connection;
 
 namespace AmaMovies.Account.Infra.Database;
 
