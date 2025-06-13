@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 namespace AmaMovies.Account.Application.UseCases;
 
-public interface IUseCase<TInput, TOutput>
+public interface IUseCase
 {
-    Task<TOutput> ExecuteAsync(TInput input);
+    Task<object> ExecuteAsync(object input);
 }

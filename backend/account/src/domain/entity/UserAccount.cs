@@ -1,10 +1,7 @@
-using System;
 using System.Security.Cryptography;
 using System.Text;
 using Account.Domain.Enum;
 using Account.Domain.Vo;
-using AmaMovies.Account.Domain.Entities.Password;
-using AmaMovies.Account.Domain.Entity.Password;
 using AmaMovies.Account.Domain.Enum;
 
 namespace AmaMovies.Account.Domain.Entities;
