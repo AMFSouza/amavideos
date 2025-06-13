@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
+using AmaMovies.Account.Infra.Data.Connection;
 
 namespace AmaMovies.Account.Infra.Data.Adapter;
 public class EfConnectionAdapter : IConnection
